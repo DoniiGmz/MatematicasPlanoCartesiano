@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <title>Inecuaciones</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Esto es opcional, para centrarla también verticalmente */
+        }
+        .centrar-imagen {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+        }
+        #planoCartesiano {
+            width: 200px;
+            
+        }
+        .equation {
+            font-size: 1.5em;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .step {
+            font-size: 1.2em;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        #message {
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #error {
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            font-size: 1em;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+
+        button:hover {
+            background-color: #ff80ab;
+        }
+        .exercise {
+            margin: 15px 0;
+            font-size: 18px;
+            color: #444;
+        }
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;
+        }
+        #noMePresiones {
+            display: block;
+            margin: 30px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #ff6666;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #noMePresiones:hover {
+            background-color: #ff3333;
+        }.exercises {
+            margin: 20px 0;
+            display: none; /* La guía está oculta inicialmente */
+        }
+        .exercise {
+            margin: 15px 0;
+            font-size: 18px;
+            color: #444;
+        }
+
+        #noMePresiones {
+            display: block;
+            margin: 30px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #ff6666;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #noMePresiones:hover {
+            background-color: #ff3333;
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="content">
+        <header>
+            <div class="banner">
+                <img src="Logo.png" alt="Fe y Alegría Logo" class="logo">
+                <h1>Fe y Alegría Caroni</h1>
+                <p>Matemática 3er año</p>
+                <p>Docente: Adonis Gómez</p>
+            </div>
+        </header>
+        <section class="intro">
+            <h2>Bienvenidos a la clase de Plano Cartesiano</h2>
+            <p>En esta sesión, veremos un repaso del Plano cartesiano y veremos cómo representar puntos en él con ejemplos graficos.</p>
+        </section>
+        <div class="container">
+            <main>
+                <p>Antes de empezar vamos a dedicar unos minutos a profundizar en la siguiente lectura:</p>
+                <h2>Lectura:El Esfuerzo siempre da sus Frutos</h2>
+                <img src="image.png" alt="Descripción de la imagen" style="float: left; margin-right: 10px; max-width: 300px; height: auto;">
+                <p>En la vida, cada uno de nosotros está en un viaje único, lleno de desafíos y aprendizajes. A menudo, se nos dice que el esfuerzo es la clave del éxito, y aunque esta verdad puede parecer simple, lleva consigo una profundidad que a veces olvidamos: el esfuerzo no siempre produce resultados inmediatos, pero sí produce resultados duraderos.</p>
+
+                <p>El esfuerzo es como sembrar una semilla. Al principio, parece que no pasa nada. La tierra no cambia, no vemos brotes a simple vista. Sin embargo, debajo de la superficie, la semilla está en pleno proceso de transformación. Está echando raíces, absorbiendo los nutrientes necesarios para su crecimiento. Al igual que la semilla, nuestro esfuerzo constante y dedicado, aunque a veces no dé frutos visibles de inmediato, está trabajando en algo más profundo.</p>
+
+                <p>Cada uno de nosotros tiene un ritmo distinto. Algunos florecen rápidamente, mientras que otros tardan más tiempo en ver los frutos de su trabajo. Y esto está bien. No estamos compitiendo en la misma carrera ni corriendo al mismo tiempo. Lo importante es no compararse con los demás, sino mantenerse enfocado en nuestro propio proceso, porque lo que importa es el crecimiento personal que obtenemos en el camino.</p>
+
+                <p>Alcanzar un objetivo es, en parte, fruto del esfuerzo acumulado, pero también del tiempo y de la paciencia. A veces, los resultados tardan en llegar no porque no estemos trabajando lo suficiente, sino porque el terreno necesita más tiempo para estar listo. Cada paso que damos, cada pequeño avance, nos acerca más a nuestros sueños.</p>
+
+                <p>En este recorrido, es crucial recordarnos que el éxito no es solo llegar a la meta, sino todo lo que aprendemos mientras caminamos hacia ella. El esfuerzo nos enseña disciplina, perseverancia y, sobre todo, nos recuerda que los logros más valiosos son aquellos que se construyen con paciencia y dedicación.</p>
+
+                <p>Así que, si alguna vez sientes que tus frutos no están llegando tan rápido como esperas, no te desanimes. Recuerda que las mejores cosechas requieren tiempo. Sigue esforzándote, confiando en tu proceso, y tarde o temprano, esos frutos llegarán.</p>
+
+
+                
+                <section id="plano-cartesiano">
+                    <h2>¿Qué es el Plano Cartesiano?</h2>
+                    <p>El plano cartesiano es un sistema de coordenadas utilizado para representar puntos en el espacio bidimensional. Fue creado por el matemático René Descartes y está compuesto por dos líneas perpendiculares que se cruzan en un punto llamado origen.</p>
+
+                    <p>La línea horizontal se llama <strong>eje de las abcisas, y se representa con la letra X</strong>, y la línea vertical se llama <strong>eje de la Ordenadas y se representa con la letra Y</strong>. El punto donde ambos ejes se encuentran es el <strong>origen</strong>, y se representa como el punto (0, 0).</p>
+
+                    <h2>Cómo Graficar Puntos en el Plano Cartesiano</h2>
+                    <p>Para graficar puntos en el plano cartesiano, utilizamos un par ordenado de números, que se escribe como (x, y). El primer número del par corresponde a la posición en el eje X (horizontal), y el segundo número corresponde a la posición en el eje Y (vertical).</p>
+
+                    <h2>Pasos para Graficar un Punto</h2>
+                    <p>1. Toma el primer número del par ordenado (la coordenada X) y localiza su posición en el eje X. Si es positivo, muévete hacia la derecha del origen; si es negativo, muévete hacia la izquierda.</p>
+
+                    <p>2. Toma el segundo número del par ordenado (la coordenada Y) y localiza su posición en el eje Y. Si es positivo, muévete hacia arriba desde el origen; si es negativo, muévete hacia abajo.</p>
+
+                    <p>3. Marca el punto donde se cruzan estas dos posiciones. ¡Ese es el punto que estás graficando!</p>
+
+                    <h2>Ejemplo Práctico</h2>
+                    <p>Graficar el punto (3, 2):</p>
+                    <p>1. La coordenada X es 3, por lo que nos movemos 3 unidades a la derecha en el eje X.</p>
+                    <p>2. La coordenada Y es 2, así que nos movemos 2 unidades hacia arriba en el eje Y.</p>
+                    <p>3. El punto donde se cruzan estas posiciones es (3, 2), y lo marcamos en el plano cartesiano.</p>
+                    <p>En la grafica de la sección de Gráfico Interactivo se muuestra la gráfica del punto (3,2) con el nombre de <b>A</b></p>
+                </section>
+                
+                <section id="grafica">
+                    <h2>Gráfico Interactivo</h2>
+
+                    <p>En el siguente Plano Cartesiano se han graficado los siguientes puntos:</p>
+                    <p><b>A(3,2)</b></p>
+                    <p><b>B(-2,4)</b></p>
+                    <p><b>C(1,-3)</b></p>
+                    <p><b>D(-1,-3)</b></p>
+                    <br><br>
+                    
+                </section>
+                <img src="Imagen3.png" alt="Plano Cartesiano con puntos graficados" width="900"  class="centrar-imagen">
+            <br><br><br><br><br><br><br><br><br><br><br><br>
+            
+            <button id="noMePresiones">🔴 ¡Presiona para ver las actividades pendientes!</button>
+            <br><br><br>
+
+            <div class="container">
+                
+
+                
+
+                <div id="exercises" class="exercises">
+                    
+                    
+                    <h1>📝 1. Actividad individual - Valor: 20 Puntos</h1>
+                    <h2>✏️  Graficar e indicar en qué cuadrantes se encuentra cada punto</h2>
+                    
+                    <p class="exercise"><b>Punto 1:</b> A(3, 2)</p>
+                    <p class="exercise"><b>Punto 2:</b> B(-4, 5)</p>
+                    <p class="exercise"><b>Punto 3:</b> C(1, -3)</p>
+                    <p class="exercise"><b>Punto 4:</b> D(-6, -1)</p>
+                    <p class="exercise"><b>Punto 5:</b> E(2, -4)</p>
+                    <p class="exercise"><b>Punto 6:</b> F(-3, -5)</p>
+                    <p class="exercise"><b>Punto 7:</b> G(5, 4)</p>
+                    <p class="exercise"><b>Punto 8:</b> H(-2, 3)</p>
+                    <p class="exercise"><b>Punto 9:</b> I(0, -5)</p>
+                    <p class="exercise"><b>Punto 10:</b> J(-5, 0)</p>
+                    
+                    <footer>
+                        <p>Fecha de entrega: <b>Lunes (11 de Noviembre)</b></p>
+                        <p>Recuerda hacer una portada creativa con la fecha, tu nombre, nombre de la materia y el título de la guía: <b>Guía de Plano Cartesiano</b> 🎨</p>
+                        <p><b>Realizar esta actividad en hojas en hojas blancas</b></p>
+                    </footer>
+                    <h1>📝 2. Taller a libro Cerrado - Valor: 20 Puntos</h1>
+                    <h2>✏️ El taller que teníamos pendiente en parejas</h2>
+                    <footer>
+                        <p>Fecha: <b>Martes (12 de Noviembre)</b></p>
+                    </footer>
+                    
+
+
+                    <div class="center">
+                        <img src="image1.png" alt="Children learning in a classroom, cartoon style" width="500">
+                    </div>
+
+                </div>
+
+                
+            </div>
+                
+
+            <script>
+                document.getElementById('noMePresiones').addEventListener('click', function() {
+                    // Mostramos la guía de ejercicios
+                    var exercises = document.getElementById('exercises');
+                    exercises.style.display = 'block';
+        
+                    // Cambiamos el texto del botón después de presionarlo
+                    this.textContent = '✅ ¡Actividades a Realizar! 📘';
+                    this.style.backgroundColor = '#4CAF50'; // Cambiamos el color a verde
+                    this.disabled = true; // Deshabilitamos el botón para evitar múltiples clics
+                });
+            </script>
+                
+                    
+        
+            </main>
+        </div>
+
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+        let currentStep = 1;
+        const stepsContainer = document.getElementById("steps-container");
+    
+        document.getElementById("nextStepBtn").addEventListener("click", function () {
+            const error = document.getElementById("error");
+            const message = document.getElementById("message");
+            error.textContent = "";  // Limpiar el mensaje de error
+    
+            if (currentStep === 1) {
+                // Paso 1: Mostrar el siguiente paso
+                stepsContainer.innerHTML += '<div class="equation" id="step2">5x > 20 - 5</div>';
+                currentStep++;
+            } else if (currentStep === 2) {
+                // Paso 2: Realizar la resta
+                stepsContainer.innerHTML += '<div class="equation" id="step3">5x > 15</div>';
+                currentStep++;
+            } else if (currentStep === 3) {
+                // Paso 3: Dividir ambos lados por 5
+                stepsContainer.innerHTML += '<div class="equation" id="step4">x > 15 / 5</div>';
+                currentStep++;
+            } else if (currentStep === 4) {
+                // Paso 4: Mostrar el resultado final
+                stepsContainer.innerHTML += '<div class="equation" id="step5">x > 3</div>';
+                currentStep++;
+            } else if (currentStep === 5) {
+                // Último paso: Mostrar mensaje correcto
+                message.textContent = "¡Correcto! x > 3 es la solución.";
+                document.getElementById("nextStepBtn").style.display = "none"; // Ocultar el botón
+            } else {
+                error.textContent = "Operación no válida, intenta de nuevo.";
+            }
+        });
+    </script>
+    
+</body>
+</html>
